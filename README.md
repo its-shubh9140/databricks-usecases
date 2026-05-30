@@ -2,7 +2,6 @@
 #repo for exploring databricks usecases.
 
 
-```markdown
 # Medallion Data Pipeline Architecture (S3 to BI via Unity Catalog)
 
 This repository contains the data engineering pipeline implementing a Medallion Architecture using **AWS S3** as the landing zone, **Databricks Unity Catalog** for data governance/structuring, and downstream **BI & Analytics** integration.
@@ -13,30 +12,26 @@ This repository contains the data engineering pipeline implementing a Medallion 
 
 The data flows through a multi-layer refinement process designed to guarantee data quality, ACID compliance, and high performance for reporting. This architecture utilizes a specialized **Silver Pre** layer to isolate complex technical preparation from business logic.
 
-
-```
-
-[ Raw Data (S3) ]
-│
-▼
+```text
+[ Raw Data (S3) ] 
+       │
+       ▼
 [ Ingestion & Bronze Schemas ] ──► External Volumes & Managed Tables
-│
-▼
+       │
+       ▼
 [ Silver Pre Layer ]          ──► Technical Preparation & Flattening
-│
-▼
+       │
+       ▼
 [ Data Refinement (ETL) ]     ──► Cleansing, De-duplication & Transformation
-│
-▼
+       │
+       ▼
 [ Silver Layer ]              ──► Conformed & Optimized Managed Tables
-│
-▼
+       │
+       ▼
 [ Aggregation & Modeling ]    ──► Business Rules & Dimensional Modeling
-│
-▼
+       │
+       ▼
 [ Gold Layer & BI ]           ──► Performance-Tuned Aggregate Tables ──► BI Tools
-
-
 
 ### 📦 Data Pipeline Layers
 
@@ -66,32 +61,32 @@ Unity Catalog enforces a strict three-tier namespace (`catalog.schema.table_or_v
 
 
 
+```text
 Metastore (AWS Region level)
-└── 📁 dev_catalog (or prod_catalog)
-├── 📂 bronze_ingest_schema
-│    └── 📄 volumes/
-│         └── 📁 raw_files (External Volume pointing to s3://my-bucket/raw/)
-│
-├── 📂 bronze_schema
-│    └── 📊 tables/
-│         ├── 📄 raw_transactions (As-is S3 records, strings, nested JSON)
-│         └── 📄 raw_user_logs
-│
-├── 📂 silver_pre_schema
-│    └── 📊 tables/
-│         ├── 📄 stg_transactions (Flattened JSON, casted types, hashed PII)
-│         └── 📄 stg_user_logs
-│
-├── 📂 silver_schema
-│    └── 📊 tables/
-│         ├── 📄 clean_transactions (Managed Delta Table; joined, validated data)
-│         └── 📄 dim_users
-│
-└── 📂 gold_schema
-└── 📊 tables/
-├── 📄 daily_sales_summary (Pre-aggregated for BI)
-└── 📄 user_engagement_metrics
-
+   └── 📁 dev_catalog (or prod_catalog)
+        ├── 📂 bronze_ingest_schema
+        │    └── 📄 volumes/
+        │         └── 📁 raw_files (External Volume pointing to s3://my-bucket/raw/)
+        │
+        ├── 📂 bronze_schema
+        │    └── 📊 tables/
+        │         ├── 📄 raw_transactions (As-is S3 records, strings, nested JSON)
+        │         └── 📄 raw_user_logs
+        │
+        ├── 📂 silver_pre_schema
+        │    └── 📊 tables/
+        │         ├── 📄 stg_transactions (Flattened JSON, casted types, hashed PII)
+        │         └── 📄 stg_user_logs
+        │
+        ├── 📂 silver_schema
+        │    └── 📊 tables/
+        │         ├── 📄 clean_transactions (Managed Delta Table; joined, validated data)
+        │         └── 📄 dim_users
+        │
+        └── 📂 gold_schema
+             └── 📊 tables/
+                  ├── 📄 daily_sales_summary (Pre-aggregated for BI)
+                  └── 📄 user_engagement_metrics
 
 ### 🔍 Hierarchy Component Roles
 
