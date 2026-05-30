@@ -1,8 +1,6 @@
-Ah, that happens when a bulleted list gets placed right beneath a code block without an empty line separating them! The Markdown parser treats the list as a continuation of plain text and forgets to render the bullet points correctly.
+## databricks-usecases
+#repo for exploring databricks usecases.
 
-Adding an extra empty line right before the list fixes this instantly.
-
-Here is the fully corrected, copy-paste-ready `README.md` file with both diagrams protected and the list rendering bugs completely resolved:
 
 ---
 
