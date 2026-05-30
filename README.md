@@ -36,7 +36,7 @@ The data flows through a multi-layer refinement process designed to guarantee da
 ▼
 [ Gold Layer & BI ]           ──► Performance-Tuned Aggregate Tables ──► BI Tools
 
-```
+
 
 ### 📦 Data Pipeline Layers
 
@@ -48,7 +48,6 @@ The data flows through a multi-layer refinement process designed to guarantee da
 5. **Gold Layer (Aggregation):** Data is transformed into subject-area star/snowflake schemas or highly optimized aggregate tables tuned directly for analytical consumption.
 6. **BI & Analytics:** PowerBI, Tableau, Looker, and other platforms consume semantic data exclusively from the Gold Layer.
 
----
 
 ## 🧠 Why Include a `silver_pre` Layer?
 
@@ -66,7 +65,6 @@ Moving data directly from a raw Bronze state into a business-ready Silver state 
 Unity Catalog enforces a strict three-tier namespace (`catalog.schema.table_or_volume`) to manage governance and accessibility across the entire pipeline.
 
 
-```
 
 Metastore (AWS Region level)
 └── 📁 dev_catalog (or prod_catalog)
@@ -94,7 +92,6 @@ Metastore (AWS Region level)
 ├── 📄 daily_sales_summary (Pre-aggregated for BI)
 └── 📄 user_engagement_metrics
 
-```
 
 ### 🔍 Hierarchy Component Roles
 
